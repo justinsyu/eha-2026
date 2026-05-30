@@ -2,12 +2,12 @@
   color-scheme: light;
   --background: #ffffff;
   --surface: #ffffff;
-  --surface-soft: #fbf3df;
+  --surface-soft: #fffbf1;
   --surface-blue: #eef8fb;
   --surface-gold: #fff8e6;
-  --text: #211b13;
-  --body-text: #3b3329;
-  --muted: #746a5b;
+  --text: #172128;
+  --body-text: #3c3c3c;
+  --muted: #67717a;
   --border: #eadfca;
   --border-strong: #d6b773;
   --accent: #9b711f;
@@ -32,9 +32,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 8% 0%, rgba(231, 202, 140, 0.35), transparent 24rem),
-    linear-gradient(180deg, #ffffff 0%, #fffbf0 38%, #ffffff 100%);
+  background: var(--background);
   color: var(--body-text);
   font-family: var(--font-body);
   line-height: 1.55;
@@ -56,8 +54,6 @@ select {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -69,23 +65,12 @@ select {
 }
 
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.72rem;
-  color: var(--text);
-  font-family: var(--font-condensed);
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  color: var(--accent-blue);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
   text-decoration: none;
-  text-transform: uppercase;
-}
-
-.brand-logo {
-  display: block;
-  width: 7.2rem;
-  height: auto;
-  flex: 0 0 auto;
 }
 
 nav {
@@ -100,7 +85,7 @@ nav a {
   align-items: center;
   gap: 0.32rem;
   border-bottom: 1px solid transparent;
-  color: var(--accent-strong);
+  color: var(--accent-blue);
   font-size: 0.86rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -125,11 +110,17 @@ main {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(1.1rem, 2vw, 1.8rem);
+  gap: 1rem;
+  max-width: 76rem;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  padding: 0 0 1.5rem;
   border-bottom: 1px solid var(--border-strong);
+}
+
+.eha-hero {
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  align-items: end;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .hero-copy {
@@ -148,8 +139,9 @@ main {
 }
 
 .hero h1 {
-  max-width: 58rem;
-  font-size: clamp(2.15rem, 4.1vw, 4.1rem);
+  max-width: 54rem;
+  color: var(--accent-blue);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
 }
 
 .lead,
@@ -166,96 +158,105 @@ main {
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--border-strong);
+  background: var(--surface-soft);
+}
+
+.eha-congress-visual {
+  display: grid;
+  aspect-ratio: 16 / 10;
+}
+
+.eha-visual-location {
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  background: #ffffff;
+  color: var(--accent-blue);
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.eha-visual-main {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   background: var(--charcoal);
 }
 
-.eha-hero-banner {
-  position: relative;
-  min-height: clamp(8.4rem, 13vw, 10.75rem);
+.eha-visual-copy {
   display: grid;
-  align-content: space-between;
-  gap: clamp(0.65rem, 1.3vw, 1rem);
-  padding: clamp(0.8rem, 1.8vw, 1.25rem);
+  align-content: center;
+  gap: 0.55rem;
+  padding: clamp(0.95rem, 2.4vw, 1.8rem);
+  background: var(--charcoal);
+  color: var(--accent-gold);
+}
+
+.eha-visual-copy img {
+  display: block;
+  width: min(100%, 14rem);
+  height: auto;
+  margin-bottom: 0.4rem;
+}
+
+.eha-visual-copy strong {
   color: #ffffff;
-  isolation: isolate;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.72rem);
+  font-weight: 500;
+  line-height: 1.08;
 }
 
-.eha-hero-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(110deg, rgba(33, 27, 19, 0.97), rgba(33, 27, 19, 0.72) 52%, rgba(155, 113, 31, 0.64)),
-    repeating-linear-gradient(90deg, rgba(231, 202, 140, 0.11) 0 1px, transparent 1px 6rem);
+.eha-visual-copy span {
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.hero-watermark {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
+.eha-key-visual {
   display: block;
   width: 100%;
   height: 100%;
+  min-height: 9rem;
   object-fit: cover;
-  opacity: 0.25;
-  mix-blend-mode: screen;
 }
 
-.hero-banner-topline {
+.eha-visual-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-height: 3.45rem;
+  padding: 0.65rem 1rem;
+  background: var(--accent-gold);
+  color: var(--charcoal);
 }
 
-.hero-banner-topline img {
+.eha-visual-footer strong,
+.eha-visual-footer span {
   display: block;
-  width: clamp(5.6rem, 9vw, 8rem);
-  height: auto;
 }
 
-.hero-banner-topline span {
-  color: var(--accent-gold);
-  font-family: var(--font-condensed);
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+.eha-visual-footer strong {
+  font-size: 0.86rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
-  text-align: right;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.hero-banner-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-.hero-banner-grid div {
-  min-height: 3.95rem;
-  display: grid;
-  align-content: space-between;
-  gap: 0.35rem;
-  padding: 0.58rem 0.7rem;
-  border: 1px solid rgba(231, 202, 140, 0.55);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.hero-banner-grid strong {
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(0.82rem, 1vw, 1rem);
+.eha-visual-footer span {
+  max-width: 16rem;
+  color: #4f3b16;
+  font-size: 0.78rem;
   font-weight: 600;
-  line-height: 1.13;
-}
-
-.hero-banner-grid span {
-  color: var(--accent-gold);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.3;
+  text-align: right;
 }
 
 .summary-grid {
@@ -291,12 +292,12 @@ main {
 
 .summary-grid span {
   display: block;
-  margin-top: 0.2rem;
-  color: var(--accent);
-  font-family: var(--font-condensed);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  margin-top: 0.25rem;
+  color: var(--accent-blue);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 section {
@@ -326,13 +327,14 @@ h3 {
 
 .filter-panel {
   display: grid;
-  grid-template-columns: minmax(18rem, 2fr) repeat(5, minmax(8rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   gap: 1rem;
   align-items: end;
   margin: 1rem 0 1.25rem;
   padding: 1rem;
   border: 1px solid var(--border-strong);
-  background: linear-gradient(135deg, var(--surface-soft), #ffffff 58%, var(--surface-blue));
+  border-radius: 0.5rem;
+  background: var(--surface-soft);
 }
 
 .filter-panel label {
@@ -343,6 +345,10 @@ h3 {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.filter-panel label:first-child {
+  grid-column: span 2;
 }
 
 .filter-panel input,
@@ -742,6 +748,10 @@ h3 {
 }
 
 @media (max-width: 860px) {
+  .eha-hero {
+    grid-template-columns: 1fr;
+  }
+
   .site-header,
   .section-heading-row,
   .results-toolbar {
@@ -757,6 +767,10 @@ h3 {
 
   .filter-panel {
     grid-template-columns: 1fr;
+  }
+
+  .filter-panel label:first-child {
+    grid-column: auto;
   }
 
   .document-row-link {
@@ -775,9 +789,6 @@ h3 {
     margin-right: 0;
   }
 
-  .hero-banner-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 640px) {
@@ -786,30 +797,47 @@ h3 {
     overflow-x: hidden;
   }
 
-  .brand {
-    gap: 0.55rem;
-    font-size: 1rem;
-  }
-
-  .brand-logo {
-    width: 5.8rem;
-  }
-
   .hero h1 {
     font-size: 2rem;
   }
 
-  .hero-banner-topline {
+  .eha-congress-visual {
+    aspect-ratio: auto;
+  }
+
+  .eha-visual-main {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  }
+
+  .eha-visual-copy {
+    padding: 0.85rem;
+  }
+
+  .eha-visual-copy img {
+    width: min(100%, 8rem);
+  }
+
+  .eha-visual-copy strong {
+    font-size: 1.04rem;
+  }
+
+  .eha-visual-copy span {
+    font-size: 0.58rem;
+  }
+
+  .eha-key-visual {
+    min-height: 11.5rem;
+    height: 100%;
+  }
+
+  .eha-visual-footer {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .hero-banner-topline span {
+  .eha-visual-footer span {
+    max-width: none;
     text-align: left;
-  }
-
-  .hero-banner-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .summary-grid div {

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <title>EHA 2026 Conference Data Archive</title>
+    <meta name="description" content="Searchable static archive of EHA 2026 abstracts, posters, oral presentations, and publication-only records.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css?v=eha-2026">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="EHA 2026 Conference Data Archive home">
+        <img src="assets/img/eha_library_logo.png" alt="">
+        <span>EHA 2026 Conference Data Archive</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#browse">Browse</a>
+        <a href="#groups">Groups</a>
+        <a href="#topics">Topics</a>
+        <a class="download-link" href="data/eha_2026_abstracts.json" download>
+          <svg class="download-icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M10 2.5v9m0 0 3.5-3.5M10 11.5 6.5 8M4 14.5v2h12v-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          JSON
+        </a>
+        <a class="download-link" href="assets/data/eha_2026_abstracts.md" download>
+          <svg class="download-icon" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M10 2.5v9m0 0 3.5-3.5M10 11.5 6.5 8M4 14.5v2h12v-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Markdown
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <img class="event-badge" src="assets/img/eha_2026_badge.png" alt="EHA 2026">
+          <h1>EHA 2026 abstracts, posters, and presentations</h1>
+          <p class="lead">A static, browser-searchable archive of 4,293 EHA Library records. The site preserves abstract identifiers, author lists, presentation groups, topic/session context, structured abstract sections, keywords, and source links.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#browse">Search records</a>
+            <a class="button button-secondary" href="https://library.ehaweb.org/eha/#!*menu=6*browseby=3*sortby=2*ce_id=2934" target="_blank" rel="noopener">View EHA source</a>
+          </div>
+        </div>
+        <figure class="hero-media" aria-label="EHA Library conference categories">
+          <img class="hero-backdrop" src="assets/img/eha_events_header.jpg" alt="">
+          <div class="hero-card-stack">
+            <img src="assets/img/eha_2026_badge.png" alt="EHA 2026">
+            <div class="hero-card">
+              <strong>Plenary Abstract Session</strong>
+              <span>5 records</span>
+            </div>
+            <div class="hero-card">
+              <strong>Oral Presentations</strong>
+              <span>221 records</span>
+            </div>
+            <div class="hero-card">
+              <strong>Posters Presentations</strong>
+              <span>2,151 records</span>
+            </div>
+            <div class="hero-card">
+              <strong>Publication Only</strong>
+              <span>1,916 records</span>
+            </div>
+          </div>
+        </figure>
+      </section>
+
+      <section class="summary-grid" aria-label="Archive summary">
+        <div>
+          <strong>Records</strong>
+          <span data-stat="records">4,293</span>
+        </div>
+        <div>
+          <strong>Structured</strong>
+          <span data-stat="structured">4,290</span>
+        </div>
+        <div>
+          <strong>Groups</strong>
+          <span data-stat="groups">4</span>
+        </div>
+        <div>
+          <strong>Source links</strong>
+          <span data-stat="source-urls">4,293</span>
+        </div>
+      </section>
+
+      <section id="browse" class="archive-browser" aria-labelledby="browse-title">
+        <div class="section-heading-row">
+          <div>
+            <h2 id="browse-title">Browse records</h2>
+            <p class="lead">Search title, abstract text, author, affiliation, keyword, abstract number, EHA ID, group, topic, and presentation type. Everything runs locally in the browser.</p>
+          </div>
+        </div>
+
+        <form class="filter-panel" id="filters">
+          <label>
+            <span>Search</span>
+            <input id="search" type="search" placeholder="Try myeloma, S103, EHA-3803, bispecific">
+          </label>
+          <label>
+            <span>Group</span>
+            <select id="marker-filter">
+              <option value="">All groups</option>
+            </select>
+          </label>
+          <label>
+            <span>Topic/session</span>
+            <select id="topic-filter">
+              <option value="">All topics</option>
+            </select>
+          </label>
+          <label>
+            <span>Presentation type</span>
+            <select id="type-filter">
+              <option value="">All types</option>
+            </select>
+          </label>
+          <label>
+            <span>Abstract structure</span>
+            <select id="structure-filter">
+              <option value="">All structures</option>
+            </select>
+          </label>
+          <label>
+            <span>Sort</span>
+            <select id="sort-filter">
+              <option value="relevance">Relevance</option>
+              <option value="code">Abstract number</option>
+              <option value="title">Title</option>
+              <option value="group">Group</option>
+              <option value="topic">Topic/session</option>
+              <option value="date">Date</option>
+            </select>
+          </label>
+        </form>
+
+        <div class="results-toolbar" aria-live="polite">
+          <span id="result-count">Loading records...</span>
+          <button class="button button-secondary" id="clear-filters" type="button">Clear filters</button>
+        </div>
+
+        <ul class="document-list document-rows" id="results"></ul>
+        <button class="button button-primary load-more" id="load-more" type="button" hidden>Load more results</button>
+      </section>
+
+      <section id="groups" aria-labelledby="groups-title">
+        <h2 id="groups-title">Presentation groups</h2>
+        <ul class="document-list analytics-grid" id="marker-list"></ul>
+      </section>
+
+      <section id="topics" aria-labelledby="topics-title">
+        <h2 id="topics-title">Top topics and sessions</h2>
+        <ul class="document-list analytics-grid" id="topic-list"></ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Static archive for search, citation, and AI retrieval. EHA Library source links are retained on every record card.</p>
+      <p>Maintained by Justin Yu. <a href="https://github.com/justinsyu/eha-2026" rel="noopener">Source repository and issue contact</a>.</p>
+    </footer>
+
+    <dialog class="abstract-dialog" id="abstract-dialog" aria-labelledby="dialog-title">
+      <article>
+        <button class="dialog-close" type="button" aria-label="Close record detail">Close</button>
+        <div id="dialog-content"></div>
+      </article>
+    </dialog>
+
+    <script src="assets/js/app.js?v=eha-2026" defer></script>
+  </body>
+</html>

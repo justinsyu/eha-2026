@@ -154,6 +154,10 @@ main {
   text-wrap: pretty;
 }
 
+#browse .lead {
+  max-width: none;
+}
+
 .hero-media {
   margin: 0;
   overflow: hidden;
@@ -163,11 +167,12 @@ main {
 
 .eha-congress-visual {
   display: grid;
-  aspect-ratio: 16 / 10;
+  height: clamp(14rem, 13vw, 15.375rem);
+  grid-template-rows: 2.85rem minmax(0, 1fr) 4rem;
+  aspect-ratio: auto;
 }
 
 .eha-visual-location {
-  min-height: 3.2rem;
   display: flex;
   align-items: center;
   padding: 0.55rem 1rem;
@@ -189,23 +194,23 @@ main {
 .eha-visual-copy {
   display: grid;
   align-content: center;
-  gap: 0.55rem;
-  padding: clamp(0.95rem, 2.4vw, 1.8rem);
+  gap: 0.35rem;
+  padding: clamp(0.75rem, 1.6vw, 1.15rem);
   background: var(--charcoal);
   color: var(--accent-gold);
 }
 
 .eha-visual-copy img {
   display: block;
-  width: min(100%, 14rem);
+  width: min(100%, 10.5rem);
   height: auto;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.15rem;
 }
 
 .eha-visual-copy strong {
   color: #ffffff;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.72rem);
+  font-size: clamp(1rem, 1.45vw, 1.32rem);
   font-weight: 500;
   line-height: 1.08;
 }
@@ -213,7 +218,7 @@ main {
 .eha-visual-copy span {
   color: var(--accent-gold);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -232,7 +237,6 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 3.45rem;
   padding: 0.65rem 1rem;
   background: var(--accent-gold);
   color: var(--charcoal);
@@ -802,6 +806,7 @@ h3 {
   }
 
   .eha-congress-visual {
+    height: auto;
     aspect-ratio: auto;
   }
 

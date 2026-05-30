@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <title>EHA 2026 Conference Data Archive</title>
-    <meta name="description" content="Searchable static archive of EHA 2026 abstracts, posters, oral presentations, and publication-only records.">
+    <title>EHA 2026 Abstract Records Archive</title>
+    <meta name="description" content="Searchable static archive of EHA 2026 EHA Library abstract records, including plenary, oral, poster, and publication-only categories.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,12 +14,12 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="./" aria-label="EHA 2026 Conference Data Archive home">
-        EHA 2026 Conference Data Archive
+      <a class="brand" href="./" aria-label="EHA 2026 Abstract Records Archive home">
+        EHA 2026 Abstract Records Archive
       </a>
       <nav aria-label="Primary navigation">
         <a href="#browse">Browse</a>
-        <a href="#groups">Groups</a>
+        <a href="#categories">Categories</a>
         <a href="#topics">Topics</a>
         <a class="download-link" href="data/eha_2026_abstracts.json" download>
           <svg class="download-icon" viewBox="0 0 20 20" aria-hidden="true">
@@ -39,8 +39,8 @@
     <main>
       <section class="hero eha-hero">
         <div class="hero-copy">
-          <h1>EHA 2026 abstracts, posters, and presentations</h1>
-          <p class="lead">A static, browser-searchable archive of 4,293 EHA Library records. The site preserves abstract identifiers, author lists, presentation groups, topic/session context, structured abstract sections, keywords, and source links.</p>
+          <h1>EHA 2026 abstract records</h1>
+          <p class="lead">A static, browser-searchable archive of 4,293 EHA Library abstract records. The site preserves abstract identifiers, author lists, presentation category and format, topic/session context, structured abstract sections, keywords, and source links.</p>
         </div>
         <figure class="hero-media eha-congress-visual" aria-label="EHA2026 Congress visual">
           <div class="eha-visual-location">Stockholm, Sweden</div>
@@ -54,7 +54,7 @@
           </div>
           <div class="eha-visual-footer">
             <strong>Connect. Enrich. Progress.</strong>
-            <span>Plenary, oral, poster, and publication-only records</span>
+            <span>Plenary, oral, poster, and publication-only abstract records</span>
           </div>
         </figure>
       </section>
@@ -69,7 +69,7 @@
           <span data-stat="structured">4,290</span>
         </div>
         <div>
-          <strong>Groups</strong>
+          <strong>Categories</strong>
           <span data-stat="groups">4</span>
         </div>
         <div>
@@ -82,7 +82,7 @@
         <div class="section-heading-row">
           <div>
             <h2 id="browse-title">Browse records</h2>
-            <p class="lead">Search title, abstract text, author, affiliation, keyword, abstract number, EHA ID, group, topic, and presentation type. Everything runs locally in the browser.</p>
+            <p class="lead">Search title, abstract text, author, affiliation, keyword, abstract number, EHA ID, presentation category, topic/session, and presentation type.</p>
           </div>
         </div>
 
@@ -92,9 +92,9 @@
             <input id="search" type="search" placeholder="Try myeloma, S103, EHA-3803, bispecific">
           </label>
           <label>
-            <span>Group</span>
+            <span>Category</span>
             <select id="marker-filter">
-              <option value="">All groups</option>
+              <option value="">All categories</option>
             </select>
           </label>
           <label>
@@ -121,7 +121,7 @@
               <option value="relevance">Relevance</option>
               <option value="code">Abstract number</option>
               <option value="title">Title</option>
-              <option value="group">Group</option>
+              <option value="group">Category</option>
               <option value="topic">Topic/session</option>
               <option value="date">Date</option>
             </select>
@@ -137,8 +137,8 @@
         <button class="button button-primary load-more" id="load-more" type="button" hidden>Load more results</button>
       </section>
 
-      <section id="groups" aria-labelledby="groups-title">
-        <h2 id="groups-title">Presentation groups</h2>
+      <section id="categories" aria-labelledby="categories-title">
+        <h2 id="categories-title">Presentation categories</h2>
         <ul class="document-list analytics-grid" id="marker-list"></ul>
       </section>
 
@@ -149,7 +149,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>Static archive for search, citation, and AI retrieval. EHA Library source links are retained on every record card.</p>
+      <p>Static archive for search, citation, and AI retrieval. EHA Library source links are retained on every abstract record.</p>
       <p>Maintained by Justin Yu. <a href="https://github.com/justinsyu/eha-2026" rel="noopener">Source repository and issue contact</a>.</p>
     </footer>
 
@@ -160,6 +160,6 @@
       </article>
     </dialog>
 
-    <script src="assets/js/app.js?v=eha-ecfs-hero" defer></script>
+    <script src="assets/js/app.js?v=eha-language-audit" defer></script>
   </body>
 </html>

@@ -132,14 +132,14 @@ function compareRecords(a, b) {
 
 function metadata(record) {
   return [
-    record.display_code,
-    record.eha_abstract_id,
-    record.marker,
-    record.presentation_type,
-    record.topic,
-    record.date,
-    record.structure,
-  ].filter(Boolean);
+    { label: "Abstract number", value: record.display_code },
+    { label: "EHA abstract ID", value: record.eha_abstract_id },
+    { label: "Category", value: record.marker },
+    { label: "Presentation type", value: record.presentation_type },
+    { label: "Topic/session", value: record.topic },
+    { label: "Date", value: record.date },
+    { label: "Abstract structure", value: record.structure },
+  ].filter((item) => item.value);
 }
 
 function renderRecord(record) {
@@ -151,7 +151,7 @@ function renderRecord(record) {
         <div class="document-row-body">
           <h3 class="document-row-title">${escapeHtml(record.title || "Untitled record")}</h3>
           <p class="document-row-meta">
-            ${parts.map((part) => `<span>${escapeHtml(part)}</span>`).join("")}
+            ${parts.map((part) => `<span>${escapeHtml(part.value)}</span>`).join("")}
           </p>
           <p class="abstract-summary">${escapeHtml(record.summary || "No abstract text was available for this record.")}</p>
           <div class="abstract-actions">
@@ -239,8 +239,8 @@ function openDetail(uid) {
           .map(
             (part) => `
               <div>
-                <dt>Record</dt>
-                <dd>${escapeHtml(part)}</dd>
+                <dt>${escapeHtml(part.label)}</dt>
+                <dd>${escapeHtml(part.value)}</dd>
               </div>
             `,
           )

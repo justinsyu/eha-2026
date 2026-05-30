@@ -40,6 +40,116 @@ function breakableLabel(value) {
   return escapeHtml(value).replaceAll("/", "/<wbr>").replaceAll("-", "-<wbr>");
 }
 
+const TITLE_LOWERCASE_WORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "as",
+  "at",
+  "by",
+  "for",
+  "from",
+  "in",
+  "into",
+  "of",
+  "on",
+  "or",
+  "per",
+  "the",
+  "to",
+  "vs",
+  "with",
+  "without",
+]);
+
+const TITLE_ACRONYMS = new Set([
+  "ALL",
+  "AML",
+  "AIEOP",
+  "ASCT",
+  "B",
+  "BFM",
+  "BTK",
+  "CAR",
+  "CHOP",
+  "CI",
+  "CLL",
+  "CML",
+  "CMR",
+  "CNS",
+  "CR",
+  "CTCL",
+  "DFS",
+  "DLBCL",
+  "EBV",
+  "EFS",
+  "FL",
+  "HBV",
+  "HCV",
+  "HIV",
+  "HL",
+  "HR",
+  "HSCT",
+  "IGA",
+  "IGG",
+  "IGM",
+  "MCL",
+  "MDS",
+  "MPN",
+  "MRD",
+  "NK",
+  "NHL",
+  "ORR",
+  "OS",
+  "PFS",
+  "PNH",
+  "PR",
+  "PTCL",
+  "R",
+  "SCD",
+  "SCT",
+  "T",
+]);
+
+function titleWord(part, isFirstWord, isSubpart = false) {
+  if (!part || !/[A-Z]/.test(part)) return part;
+  const match = part.match(/^([^A-Z0-9]*)(.*?)([^A-Z0-9]*)$/);
+  if (!match) return part;
+  const [, prefix, core, suffix] = match;
+  if (!core) return part;
+  if (core.includes("-") || core.includes("/")) {
+    let firstCore = true;
+    const formatted = core
+      .split(/([/-])/)
+      .map((piece) => {
+        if (piece === "-" || piece === "/") return piece;
+        const next = titleWord(piece, isFirstWord && firstCore, !firstCore);
+        firstCore = false;
+        return next;
+      })
+      .join("");
+    return `${prefix}${formatted}${suffix}`;
+  }
+  const upper = core.toUpperCase();
+  const lower = core.toLowerCase();
+  if (TITLE_ACRONYMS.has(upper) || /\d/.test(core)) return `${prefix}${upper}${suffix}`;
+  if (!isFirstWord && !isSubpart && TITLE_LOWERCASE_WORDS.has(lower)) return `${prefix}${lower}${suffix}`;
+  const cased = isSubpart ? lower : lower.charAt(0).toUpperCase() + lower.slice(1);
+  return `${prefix}${cased}${suffix}`;
+}
+
+function displayTitle(value) {
+  const raw = text(value).trim();
+  if (!raw) return "Untitled record";
+  if (/[a-z]/.test(raw)) return raw;
+  let wordIndex = 0;
+  return raw.replace(/\S+/g, (part) => {
+    const formatted = titleWord(part, wordIndex === 0);
+    wordIndex += 1;
+    return formatted;
+  });
+}
+
 function initElements() {
   elements.filters = document.querySelector("#filters");
   elements.search = document.querySelector("#search");
@@ -149,7 +259,7 @@ function renderRecord(record) {
       <article class="document-row-link abstract-row">
         <div class="document-row-chip">${escapeHtml(record.marker)}</div>
         <div class="document-row-body">
-          <h3 class="document-row-title">${escapeHtml(record.title || "Untitled record")}</h3>
+          <h3 class="document-row-title">${escapeHtml(displayTitle(record.title))}</h3>
           <p class="document-row-meta">
             ${parts.map((part) => `<span>${escapeHtml(part.value)}</span>`).join("")}
           </p>
@@ -233,7 +343,7 @@ function openDetail(uid) {
   elements.dialogContent.innerHTML = `
     <header class="document-header dialog-header">
       <p class="eyebrow">${escapeHtml(record.session_title || record.topic || "EHA 2026")}</p>
-      <h1 id="dialog-title">${escapeHtml(record.title || "Untitled record")}</h1>
+      <h1 id="dialog-title">${escapeHtml(displayTitle(record.title))}</h1>
       <dl class="metadata">
         ${parts
           .map(

@@ -119,7 +119,7 @@ main {
 
 .eha-hero {
   grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
-  align-items: end;
+  align-items: start;
   gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 
@@ -141,7 +141,7 @@ main {
 .hero h1 {
   max-width: 54rem;
   color: var(--accent-blue);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(3rem, 5vw, 4.35rem);
 }
 
 .lead,
